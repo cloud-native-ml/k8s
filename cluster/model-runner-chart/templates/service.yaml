@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  namespace: default
+  name: {{ template "model-runner.fullname" . }}
+  labels:
+    app: {{ template "model-runner.fullname" . }}
+spec:
+  template:
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}/{{ .Values.image.image }}:{{ .Values.image.tag }}

@@ -1,0 +1,10 @@
+model:
+  ## Fill in set= command arg
+  name: set-my-name
+
+image:
+  repository: "model01d7e75773.azurecr.io"
+  image: "dummy-app"
+  ## Fill in set= command arg
+  tag: latest
+  pullPolicy: IfNotPresent
