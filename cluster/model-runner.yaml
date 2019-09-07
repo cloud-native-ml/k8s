@@ -34,7 +34,7 @@ metadata:
   name: ingress
 spec:
   rules:
-    - host: www.example.com
+    - host: cloud-native.drosiek.pl
       http:
         paths:
           - backend:
