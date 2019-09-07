@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: model-runner
+  labels:
+    app: model-runner
+spec:
+  containers:
+    - name: model-runner
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-runner
+spec:
+  selector:
+    app: model-runner
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cluster
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: model-runner
+    servicePort: 80
+  rules:
+  - host: minikube-cluster
+    http:
+      paths:
+      - path: /model-runner
+        backend:
+          serviceName: model-runner
+          servicePort: 80
