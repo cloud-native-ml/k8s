@@ -34,7 +34,8 @@ metadata:
   name: ingress
 spec:
   rules:
-    - http:
+    - host: www.example.com
+      http:
         paths:
           - backend:
               serviceName: model-runner
